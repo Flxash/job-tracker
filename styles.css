@@ -25,6 +25,14 @@ body {
     display: inline-block; 
     font-weight: 700;
     color: rgb(80, 80, 80);  
+    border: transparent;
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: #FFFDD0;
+}
+
+.dot-options:hover {
+    background-color: #dcdab6;
 }
 
 .filters {
@@ -39,32 +47,6 @@ body {
     margin-left: 20px;
 }
 
-.format {
-    margin-left: 20px;
-    height: 30px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    z-index: 100;
-}
-
-.company,
-.stage {
-    flex: 1.5;
-}
-
-.position,
-.posting-url {
-    flex: 2;
-}
-
-.date-applied,
-.resume {
-    flex: 1;
-}
-
 .new-job {
     margin-left: 20px;
     display: block;
@@ -72,10 +54,45 @@ body {
     border: none;
     background: transparent;
     cursor: pointer;
+    transition: background-color 0.15s;
+    padding: 10px 90% 10px 10px;
+    border-top: 1px #dcdab6;
+    cursor: pointer;
 }
 
 .new-job:hover {
     background-color: #dcdab6;
-    cursor: pointer;
-    padding: 10px 90% 10px 10px;
+}
+
+.job-grid,
+.format {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr 1.5fr 1fr 2fr;
+    align-items: center;
+    margin: 20px;
+}
+
+.format {
+    margin-bottom: -15px;
+    align-items: stretch;
+}
+
+.job-grid input:not(.date-applied-input) {
+    font-size: 15px;
+    padding: 6px;
+    background-color: transparent;
+    border-width: 1px;
+    max-width: none;
+}
+
+.date-applied-input {
+    font-size: 13px;
+    padding: 6px;
+    background-color: transparent;
+    border-width: 1px;
+    max-width: none;
+}
+
+.company-input {
+    border-left: none;
 }

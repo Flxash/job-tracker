@@ -13,7 +13,7 @@ const jobList = [{
     resume: '',
     postingURL: '5vbuvb4uvbnubv'
   }];
-
+/*
   document.querySelector('.js-new-job').addEventListener('click', () => {
     const html = `
         <div class="">
@@ -35,6 +35,24 @@ const jobList = [{
       document.querySelector('.js-job-grid')
       .innerHTML = html;
   });//this doesnt work.
+*/
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('js-new-job')) {
+      const html = `
+            <input placeholder="Company" class="js-company-input company-input">
+            <input placeholder="Position" class="js-position-input position-input">
+            <input type="date" class="js-date-applied-input date-applied-input">
+            <input placeholder="Stage" class="js-stage-input stage-input">
+            <input placeholder="Resume" class="js-resume-input resume-input">
+            <input placeholder="Posting URL" class="js-posting-input posting-input">
+      `;
+
+      document.querySelector('.job-grid').innerHTML += html;
+  }
+});
+
+
+
 /*
 renderJobs();
   
@@ -77,3 +95,22 @@ renderJobs();
     addTodo();
   });
   */
+
+  function addTodo() {
+    const inputElement = document.querySelector('.js-name-input');
+    const name = inputElement.value;
+  
+    const dateInputElement = document.querySelector('.js-due-date-input');
+    const dueDate = dateInputElement.value;
+  
+    todoList.push({
+      //name: name,
+      //dueDate: dueDate,
+      name,
+      dueDate
+    });
+  
+    inputElement.value = '';
+  
+    renderTodoList();
+  }
