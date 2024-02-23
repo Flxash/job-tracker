@@ -13,29 +13,7 @@ const jobList = [{
     resume: '',
     postingURL: '5vbuvb4uvbnubv'
   }];
-/*
-  document.querySelector('.js-new-job').addEventListener('click', () => {
-    const html = `
-        <div class="">
-            <input placeholder="Company"
-            class="js-company-input company-input">
-            <input placeholder="Postion"
-            class="js-position-input position-input">
-            <input type="Date Applied"
-            class="js-date-applied-input date-applied-input">
-            <input placeholder="Stage"
-            class="js-stage-input stage-input">
-            <input placeholder="Resume"
-            class="js-resume-input resume-input">
-            <input placeholder="Posting URL"
-            class="js-posting-input posting-input">
-        </div>
-      `;
 
-      document.querySelector('.js-job-grid')
-      .innerHTML = html;
-  });//this doesnt work.
-*/
 document.addEventListener('click', (event) => {
   if (event.target.classList.contains('js-new-job')) {
       const html = `
@@ -45,72 +23,35 @@ document.addEventListener('click', (event) => {
             <input placeholder="Stage" class="js-stage-input stage-input">
             <input placeholder="Resume" class="js-resume-input resume-input">
             <input placeholder="Posting URL" class="js-posting-input posting-input">
+            <button class="delete-button js-delete-button">x</button>
       `;
 
+      document.querySelector('.js-new-job').classList.add("js-hidden");
+      document.querySelector('.js-new-job').classList.add("hidden");
       document.querySelector('.job-grid').innerHTML += html;
   }
 });
 
-
-
-/*
-renderJobs();
-  
-  function renderJobs() {
-    let todoListHTML = '';
-
-    todoList.forEach((todoObject, index) => {
-      const { name, dueDate } = todoObject;
-      const html = `
-        <div class="">
-            <input placeholder="Company"
-            class="js-company-input company-input">
-            <input placeholder="Postion"
-            class="js-position-input position-input">
-            <input type="Date Applied"
-            class="js-date-applied-input date-applied-input">
-            <input placeholder="Stage"
-            class="js-stage-input stage-input">
-            <input placeholder="Resume"
-            class="js-resume-input resume-input">
-            <input placeholder="Posting URL"
-            class="js-posting-input posting-input">
-        </div>
-      `;
-      todoListHTML += html;
-    });
-  
-    document.querySelector('.js-todo-list')
-      .innerHTML = todoListHTML;
-
-    document.querySelectorAll('.js-delete-todo-button').forEach((deleteButton, index) => {
-      deleteButton.addEventListener('click', () => {
-        todoList.splice(index, 1);
-        renderJobs();
-      });
-    });
-  }
-
-  document.querySelector('.js-add-todo-button').addEventListener('click', () => {
-    addTodo();
-  });
-  */
-
-  function addTodo() {
-    const inputElement = document.querySelector('.js-name-input');
-    const name = inputElement.value;
-  
-    const dateInputElement = document.querySelector('.js-due-date-input');
-    const dueDate = dateInputElement.value;
-  
-    todoList.push({
-      //name: name,
-      //dueDate: dueDate,
-      name,
-      dueDate
-    });
-  
-    inputElement.value = '';
-  
+document.querySelectorAll('.js-delete-button').forEach((deleteButton, index) => {
+  deleteButton.addEventListener('click', () => {
+    document.querySelectorAll('.job-grid').splice(index, 1);
     renderTodoList();
-  }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Load saved values from localStorage
+  document.querySelectorAll('input').forEach(input => {
+      const savedValue = localStorage.getItem(input.id);
+      if (savedValue) {
+          input.value = savedValue;
+      }
+  });
+
+  // Save input values to localStorage on input change
+  document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => {
+          localStorage.setItem(input.id, input.value);
+      });
+  });
+});
